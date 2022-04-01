@@ -7,7 +7,7 @@ const engineer = require("./lib/Engineer");
 const intern = require("./lib/Intern");
 const manager = require("./lib/Manager");
 
-const options = ['manager', 'engineer', 'intern']
+const options = ['engineer', 'intern']
 
 function teamGenerator() {
   inquirer
@@ -72,7 +72,7 @@ function teamGenerator() {
 </body>
 </html>`,
         (err) => {
-          err ? console.error(err) : console.log("html is started.");
+          err ? console.error(err) : console.log("your html page has been started.");
           addAnotherEmployee();
         }
       );
@@ -89,7 +89,7 @@ const addAnotherEmployee = () => {
       },
     ])
     .then((response) => {
-      if (response.add === true) {
+      if (response.name === true) {
         //move on to questions for what the employee role is
         teamRole()
       } else {
@@ -109,11 +109,11 @@ const teamRole = () => {
         choices: options,
       },
     ])
-    .then((response) => {
-  if (response.options === "engineer") {
+    .then(() => {
+  if (options.engineer === "engineer") {
     //call the manager function here
     engineer;
-  } else if (options.engineer === "intern") {
+  } else if (options.intern === "intern") {
     //call the engineer function here
     intern;
   } else {
@@ -129,7 +129,7 @@ const endProgram = () => {
         </body>
         </html>
     `, (err) => {
-        err ? console.error(err) : console.log('Your have completed your team.');
+        err ? console.error(err) : console.log('Html ended Your have completed your team.');
     }
     )}
 
