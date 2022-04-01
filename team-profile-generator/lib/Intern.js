@@ -23,7 +23,8 @@ class Intern extends Employee {
         </h1>
         <div type="text" class="email"><span>ID:</span>${this.id}</div>
         <div type="text" class="office-number"><span>Email:<span>${this.email}</span></div>
-        <div type="text" class="status-account">GitHub:<span></span>${this.school}</div>;`;
+        <div type="text" class="status-account">GitHub:<span></span>${this.school}</div>
+        </div>`;
     }
 
 }
