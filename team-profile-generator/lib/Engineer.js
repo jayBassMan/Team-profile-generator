@@ -8,8 +8,8 @@ class Engineer extends Employee {
     }
 
     getRole(){
-        console.log('this is an engineer')}
-        return  
+        return  'Engineer'
+    }
 }
 
 module.exports = Engineer;
