@@ -33,7 +33,7 @@ function teamGenerator() {
         message: "What is your office number?",
       },
     ])
-    .then((response) => {
+    .then((res) => {
       fs.appendFile(
         "teamPage.html",
         `<!DOCTYPE html>
@@ -58,28 +58,22 @@ function teamGenerator() {
     </header>
     <div class="container-wraper">
     <div class="container">
-        <h1 class="name">
-            ${response.name}</h1>
+        <h1 class="name">${res.name}</h1>
             badges
         </h1>
-        <div type="text" class="id">ID:<span>${response.id}</span></div>
-        <div type="text" class="email-number">Email:<span>${response.email}</span></div>
-        <div type="text" class="office-numbert">GitHub:<span>${response.officenumber}</span></div>
-    </div>
-    </div>
-    
-    <script src="./script.js"></script>
-</body>
-</html>`,
+        <div type="text" class="id">ID:<span>${res.id}</span></div>
+        <div type="text" class="email">Email:<span>${res.email}</span></div>
+        <div type="text" class="office-number">GitHub:<span>${res.officenumber}</span></div>
+    </div>`,
         (err) => {
           err ? console.error(err) : console.log("your html page has been started.");
-          addAnotherEmployee();
+          addToTeam();
         }
       );
     });
 }
 
-const addAnotherEmployee = () => {
+const addToTeam = () => {
   return inquirer
     .prompt([
       {
@@ -89,39 +83,39 @@ const addAnotherEmployee = () => {
       },
     ])
     .then((response) => {
-      if (response.name === true) {
-        //move on to questions for what the employee role is
-        teamRole()
-      } else {
-        //end the program
-        endProgram();
+      if (response.add) {
+        inquirer
+          .prompt([
+            //move on to questions for what the employee role is
+            {
+              type: "list",
+              message: "would you like to add an engineer or an intern",
+              name: "pick",
+              choices: options,
+            },
+          ])
+          .then((response_2) => {
+            if (response_2.pick === options.engineer) {
+              teamRoleEngineer();
+            } 
+            else if (response_2.pick === options.intern){
+              teamRoleIntern();  
+            } else {
+              addToTeam();
+            }
+          }); 
       }
     });
-};
-
-const teamRole = () => {
-    return inquirer
-    .prompt([
-      {
-        type: "list",
-        name: "options",
-        message: "What is team member status?",
-        choices: options,
-      },
-    ])
-    .then(() => {
-  if (options.engineer === "engineer") {
-    //call the manager function here
-    engineer;
-  } else if (options.intern === "intern") {
-    //call the engineer function here
-    intern;
-  } else {
-    //ask if wants to add another employee function here
-    addAnotherEmployee();
   }
-    });
-  };
+
+const teamRoleEngineer = () => {
+  employee(engineer.getRole());
+}
+
+const teamRoleIntern = () => {
+  employee(intern.getRole());
+};
+  
 
 const endProgram = () => {
      fs.appendFile('teamPage.html', ` 
