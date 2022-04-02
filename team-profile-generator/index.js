@@ -100,7 +100,7 @@ const addToTeam = () => {
             } else if (res_2.pick === 'intern') {
               teamRoleIntern();
             } else {
-              addToTeam();
+              endProgram();
             }
           }); 
       }
