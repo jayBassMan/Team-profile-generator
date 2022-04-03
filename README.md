@@ -32,7 +32,9 @@ If your README is long, add a table of contents to make it easy for users to fin
 
 ## Usage
 
-![team-gen-screenrecord](https://user-images.githubusercontent.com/67285232/161413037-b2374fe7-4e67-4b58-93b1-87bb971b8aa6.gif)
+
+Uploading team-gen-screenrecord.mp4…
+
 
 ## Credits
 
