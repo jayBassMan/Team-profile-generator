@@ -33,7 +33,8 @@ If your README is long, add a table of contents to make it easy for users to fin
 ## Usage
 
 
-Uploading team-gen-screenrecord.mp4…
+https://user-images.githubusercontent.com/67285232/161424717-01d7f707-4711-403f-bf69-afaf31b40fd2.mp4
+
 
 
 ## Credits
