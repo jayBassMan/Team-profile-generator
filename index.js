@@ -2,10 +2,10 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const { profile } = require("console");
-const employee = require("./lib/Employee");
-const engineer = require("./lib/Engineer");
-const intern = require("./lib/Intern");
-const manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const Manager = require("./lib/Manager");
+
 
 const options = ['engineer', 'intern']
 
@@ -34,6 +34,8 @@ function teamGenerator() {
       },
     ])
     .then((res) => {
+      const manager = new Manager(res.name, res.id, res.email, res.officenumber)
+
       fs.appendFile(
         "teamPage.html",
         `<!DOCTYPE html>
@@ -58,15 +60,17 @@ function teamGenerator() {
     </header>
     <div class="container-wrapper">
     <div class="container">
-        <h1 class="name">${res.name}</h1>
+        <h1 class="name">${manager.name}</h1>
             badges
         </h1>
         <div type="text" class="id">ID:<span>${res.id}</span></div>
-        <div type="text" class="email">Email:<span>${res.email}</span></div>
-        <div type="text" class="office-number">GitHub:<span>${res.officenumber}</span></div>
+        <div type="text" class="email">Email:<span><a href="${manager.email}">${manager.email}</a></span></div>
+        <div type="text" class="office-number">Office Number:<span>${manager.officeNumber}</span></div>officenumber}</span></div>
     </div>`,
         (err) => {
-          err ? console.error(err) : console.log("your html page has been started.");
+          err
+            ? console.error(err)
+            : console.log("your html page has been started.");
           addToTeam();
         }
       );
@@ -110,53 +114,57 @@ const addToTeam = () => {
 const teamRoleEngineer = () => {
   //call engineer class
   // employee(engineer.getRole());
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is your name?",
-      },
-      {
-        type: "input",
-        name: "id",
-        message: "What is your id?",
-      },
-      {
-        type: "input",
-        name: "email",
-        message: "What is your email?",
-      },
-      {
-        type: "input",
-        name: "github",
-        message: "What is your gitHub account?",
-      },
-    ])
-    .then((res) => {
-      fs.appendFile(
-        "teamPage.html",
-        `
+ 
+  return inquirer
+          .prompt([
+            {
+              type: "input",
+              name: "name",
+              message: "What is Engineers name?",
+            },
+            {
+              type: "input",
+              name: "id",
+              message: "What is Engineers id?",
+            },
+            {
+              type: "input",
+              name: "email",
+              message: "What is Engineers email?",
+            },
+            {
+              type: "input",
+              name: "github",
+              message: "What is Engineers github account?",
+            },
+          ])
+          .then((res) => {
+             var eng = new Engineer(res.name, res.id, res.email, res.github);
+            fs.appendFile(
+              "teamPage.html",
+              `
     <div class="container">
-        <h1 class="name">${res.name}</h1>
+        <h1 class="name">${eng.name}</h1>
             badges
         </h1>
-        <div type="text" class="id">ID:<span>${res.id}</span></div>
-        <div type="text" class="email">Email:<span>${res.email}</span></div>
-        <div type="text" class="office-number">GitHub:<span>${res.github}</span></div>
+        <div type="text" class="id">ID:<span>${eng.id}</span></div>
+        <div type="text" class="email">Email:<span><a href="${eng.email}">${eng.email}</a></span></div>
+        <div type="text" class="office-number">GitHub:<span><a href="${eng.github}">${eng.github}</a></span></div>
     </div>
     </div>
     
     <script src="./script.js"></script>
 </body>
 </html>`,
-        (err) => {
-          err ? console.error(err) : console.log("you added an Engineer to your html page.");
-          addToTeam();
-        }
-      );
-    });      
-}
+              (err) => {
+                err
+                  ? console.error(err)
+                  : console.log("you added an Engineer to your html page.");
+                addToTeam();
+              }
+            );
+   });
+};
 
 const teamRoleIntern = () => {
   //Call Intern class
@@ -166,35 +174,36 @@ const teamRoleIntern = () => {
             {
               type: "input",
               name: "name",
-              message: "What is your name?",
+              message: "What is Interns name?",
             },
             {
               type: "input",
               name: "id",
-              message: "What is your id?",
+              message: "What is Interns id?",
             },
             {
               type: "input",
               name: "email",
-              message: "What is your email?",
+              message: "What is Interns email?",
             },
             {
               type: "input",
               name: "school",
-              message: "What school did you attend?",
+              message: "What school did Intern attend?",
             },
           ])
           .then((res) => {
+            const intern = new Intern(res.name, res.id, res.email, res.school)
             fs.appendFile(
               "teamPage.html",
               `
     <div class="container">
-        <h1 class="name">${res.name}</h1>
+        <h1 class="name">${intern.name}</h1>
             badges
         </h1>
-        <div type="text" class="id">ID:<span>${res.id}</span></div>
-        <div type="text" class="email">Email:<span>${res.email}</span></div>
-        <div type="text" class="office-number">GitHub:<span>${res.school}</span></div>
+        <div type="text" class="id">ID:<span>${intern.id}</span></div>
+        <div type="text" class="email">Email:<span><a href="${intern.email}">${intern.email}</a></span></div>
+        <div type="text" class="office-number">School:<span>${intern.school}</span></div>
     </div>
     </div>
     
@@ -206,8 +215,8 @@ const teamRoleIntern = () => {
                   ? console.error(err)
                   : console.log("you added an Intern to your html page.");
                 addToTeam();
-             }
-        );
+              }
+            );
    });
 };
   
