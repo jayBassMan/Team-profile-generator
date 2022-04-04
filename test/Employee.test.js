@@ -7,7 +7,7 @@ describe('Employee', () => {
     it("should ...... ", () => {
       const employee = new Employee("Jonathan", '28', "jonathandila@yahoo.com");
       expect(employee.name).toEqual("Jonathan");
-      expect(employee.id).toEqual(28);
+      expect(employee.id).toEqual('28');
       expect(employee.email).toEqual("jonathandila@yahoo.com");
     });
   });
@@ -15,7 +15,7 @@ describe('Employee', () => {
   // test getName()
   describe("test methods", () => {
     it("Test methods", () => {
-      const employee = new Employee("Jonathan", 28, "jonathandila@yahoo.com");
+      const employee = new Employee("Jonathan", '28', "jonathandila@yahoo.com");
       const name = employee.getName();
       expect(name).toEqual("Jonathan");
     });
@@ -24,7 +24,7 @@ describe('Employee', () => {
   // test getId()
   describe("test getID", () => {
     it("test methods", () => {
-      const employee = new Employee("Jonathan", 28, "jonathandila@yahoo.com");
+      const employee = new Employee("Jonathan", '28', "jonathandila@yahoo.com");
       const id = employee.getId();
       expect(id).toEqual("28");
     });
@@ -33,7 +33,7 @@ describe('Employee', () => {
   //test  getEmail()
   describe("test getEmail", () => {
       it("test methods", () => {
-          const employee = new Employee("Jonathan", 28, "jonathandila@yahoo.com");
+          const employee = new Employee("Jonathan", '28', "jonathandila@yahoo.com");
           const email = employee.getEmail();
           expect(email).toEqual("jonathandila@yahoo.com");
 
@@ -43,7 +43,7 @@ describe('Employee', () => {
   //test getRole()
   describe("test getRole", () => {
       it("test method", () => {
-          const employee = new Employee("Jonathan", 28, "jonathandila@yahoo.com", 'Employee');
+          const employee = new Employee("Jonathan", '28', "jonathandila@yahoo.com", 'Employee');
           const role = employee.getRole();
           expect(role).toEqual('Employee')
       })
