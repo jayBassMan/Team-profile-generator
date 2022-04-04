@@ -29,6 +29,8 @@ to add to their team. The manager can add an Intern or Engineer.
 
 ## Usage
 
+https://user-images.githubusercontent.com/67285232/161471242-c205e394-9eaf-4760-81e6-aabf6ad06d5f.mp4
+
 https://user-images.githubusercontent.com/67285232/161424717-01d7f707-4711-403f-bf69-afaf31b40fd2.mp4
 
 
